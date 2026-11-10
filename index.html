@@ -48,6 +48,11 @@ details{border-bottom:1px solid var(--line);padding:.5rem 0}summary{font-weight:
 .bar{position:absolute;left:1.2rem;right:1.2rem;bottom:.4rem;height:.8rem;background:repeating-linear-gradient(90deg,#f3e7c4 0 2px,transparent 2px 4px,#f3e7c4 4px 5px,transparent 5px 9px);opacity:.75}
 @page{margin:12mm}
 @media print{header,nav,footer,main section:not(#member),#member h2,#member .box>p,#member .box>label,#member .box>input,#member .box>select,#member .box>.act,#pr{display:none!important}#member .box{border:0;padding:0}#mc{box-shadow:none}}
+.xbar{position:fixed;left:0;right:0;bottom:0;background:var(--navy);padding:.5rem .8rem calc(.5rem + env(safe-area-inset-bottom,0px));display:flex;gap:.7rem;align-items:center;justify-content:center;flex-wrap:wrap;z-index:5}
+.xbar span{color:#fff;font-size:.8rem}.xbar a{background:#000;color:#fff;font-weight:700;font-size:.85rem;padding:.35rem .8rem;text-decoration:none;border-radius:999px;white-space:nowrap}
+.xbar a.l{background:#06c755}.xbar a.f{background:#1877f2}.xbar a.b{background:#0085ff}.xbar a.h{background:#00a4de}
+.xbar button{font:inherit;font-weight:700;font-size:.85rem;border:0;border-radius:999px;padding:.35rem .8rem;background:#fff;color:#14284b;cursor:pointer}
+body{padding-bottom:6rem}
 footer{background:var(--navy);color:#fff;padding:1.3rem 0;text-align:center;font-size:.85rem}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) footer{background:#1b2a4d;color:#ebe8df}}
 </style>
@@ -60,7 +65,7 @@ footer{background:var(--navy);color:#fff;padding:1.3rem 0;text-align:center;font
   <p style="margin:.6rem 0 0;font-size:.9rem">電磁波の防止に、昭和・平成・令和を通じて取り組んでいます。</p>
 </div></header>
 <nav><div class="wrap">
-  <a href="#news">お知らせ</a><a href="#about">協会について</a><a href="#member">会員証発行</a><a href="#meter">電磁波測定</a><a href="#real">磁場の実測</a><a href="#check">本物判定</a><a href="#grade">認定制度</a><a href="#apply">認定申請</a><a href="#sched">講習会</a><a href="#fee">会費</a><a href="#log">活動記録</a><a href="#consult">相談受付</a><a href="#faq">よくある質問</a>
+  <a href="#news">お知らせ</a><a href="#about">協会について</a><a href="#member">会員証発行</a><a href="#meter">電磁波測定</a><a href="#real">磁場の実測</a><a href="#check">本物判定</a><a href="#grade">認定制度</a><a href="#apply">認定申請</a><a href="#sched">講習会</a><a href="#fee">会費</a><a href="#log">活動記録</a><a href="#consult">相談受付</a><a href="#today">今日の運勢</a><a href="#bbs">会員掲示板</a><a href="#hyp">仮説工房</a><a href="#hat">帽子診断</a><a href="#paper">論文投稿</a><a href="#faq">よくある質問</a>
 </div></nav>
 <main><div class="wrap">
 
@@ -218,6 +223,60 @@ footer{background:var(--navy);color:#fff;padding:1.3rem 0;text-align:center;font
   </div>
 </section>
 
+<section id="today">
+  <h2>今日の運勢</h2>
+  <div class="box">
+    <p class="sub">毎日変わる、協会公式の運勢です。同じ日なら、何度見ても同じ結果が出ます。明日は別の結果になります。</p>
+    <button class="act" id="fb" type="button">今日の運勢を見る</button>
+    <p style="font-weight:700;margin-top:1rem" id="fo2" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="bbs">
+  <h2>会員掲示板</h2>
+  <div class="box">
+    <label for="bn">ハンドルネーム</label><input id="bn" autocomplete="off" placeholder="例：鍋蓋太郎">
+    <label for="bm">投稿内容</label><input id="bm" autocomplete="off">
+    <button class="act" id="bp" type="button">投稿する</button>
+    <ul class="n" id="bl" style="margin-top:1rem"></ul>
+    <p class="sub">投稿はこの画面内だけに表示され、ページを閉じると消えます。他の人には送信されません。</p>
+  </div>
+</section>
+
+<section id="hyp">
+  <h2>仮説工房</h2>
+  <div class="box">
+    <p class="sub">協会公認の自由研究ツールです。ボタンを押すと、新しい仮説が生まれます。</p>
+    <button class="act" id="hb" type="button">仮説を生成</button>
+    <p style="font-weight:700;font-size:1.1rem;margin-top:1rem" id="ho" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="hat">
+  <h2>帽子診断</h2>
+  <div class="box">
+    <label for="hmat">素材</label>
+    <select id="hmat"><option value="30">アルミホイル（家庭用）</option><option value="25">アルミホイル（業務用）</option><option value="40">鍋のフタ</option><option value="35">ざる</option><option value="12">キッチンペーパー</option></select>
+    <label for="hly">重ね枚数：<span id="hv">3</span> 枚</label>
+    <input type="range" id="hly" min="1" max="10" value="3" style="width:100%">
+    <label for="hpos">装着方法</label>
+    <select id="hpos"><option value="20">頭にしっかり</option><option value="8">おでこだけ</option><option value="15">帽子の上からさらに</option></select>
+    <button class="act" id="hg2" type="button">診断する</button>
+    <p style="font-weight:700" id="hr2" aria-live="polite"></p>
+  </div>
+</section>
+
+<section id="paper">
+  <h2>論文投稿・研究発表</h2>
+  <div class="box">
+    <label for="pt0">題目</label><input id="pt0" autocomplete="off" placeholder="例：冷蔵庫の音と夜の静けさの関係">
+    <label for="pf">分野</label>
+    <select id="pf"><option>冷蔵庫学</option><option>鍋のフタ工学</option><option>カーテン力学</option><option>観葉植物行動学</option></select>
+    <button class="act" id="pg" type="button">投稿する</button>
+    <div class="card" id="pr2" aria-live="polite"><b id="pn"></b><div class="sub" id="ps"></div></div>
+  </div>
+</section>
+
 <section id="faq">
   <h2>よくある質問</h2>
   <div class="box">
@@ -229,7 +288,8 @@ footer{background:var(--navy);color:#fff;padding:1.3rem 0;text-align:center;font
 </section>
 
 </div></main>
-<footer><div class="wrap">© 日本電磁波防止協会【絶対的本物公式】 冷蔵庫の裏 受付時間：気が向いたとき</div></footer>
+<div class="xbar"><span>結果をシェア</span><a id="xl" target="_blank" rel="noopener" href="#">X</a><a id="ll" class="l" target="_blank" rel="noopener" href="#">LINE</a><a id="tl" target="_blank" rel="noopener" href="#">Threads</a><a id="bl2" class="b" target="_blank" rel="noopener" href="#">Bluesky</a><a id="fl" class="f" target="_blank" rel="noopener" href="#">Facebook</a><a id="hl" class="h" target="_blank" rel="noopener" href="#">はてブ</a><button id="nl" type="button">共有…</button><button id="cp" type="button">コピー</button></div>
+<footer><div class="wrap">© 日本電磁波防止協会【絶対的本物公式】　冷蔵庫の裏　受付時間：気が向いたとき</div></footer>
 <script>
 (function(){
   var $=function(i){return document.getElementById(i)};
@@ -239,7 +299,7 @@ footer{background:var(--navy);color:#fff;padding:1.3rem 0;text-align:center;font
   $("ab").addEventListener("click",function(){
     var n=$("an").value.trim();
     if(!n){$("at").textContent="お名前を入力してください";$("as").textContent="";}
-    else{$("at").textContent=n+" 様 "+$("ag").value+"認定の申請を受け付けました";
+    else{$("at").textContent=n+" 様　"+$("ag").value+"認定の申請を受け付けました";
       $("as").textContent="受付番号 APP-"+h(n+$("ag").value)+"／審査結果：合格（審査員：冷蔵庫、審査は絶対的に公正です）／"+tm();}
     $("ar").classList.add("on");
   });
@@ -250,7 +310,7 @@ footer{background:var(--navy);color:#fff;padding:1.3rem 0;text-align:center;font
   ["fk","fy"].forEach(function(i){$(i).addEventListener("input",fee);});fee();
   var ct0=0,hist=[],tt=[[0,"見習い"],[5,"準会員格"],[10,"1級相当"],[20,"特級相当"]];
   $("lg").addEventListener("click",function(){
-    ct0++;var d=new Date();hist.unshift(("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+" 冷蔵庫にご挨拶");if(hist.length>5)hist.pop();
+    ct0++;var d=new Date();hist.unshift(("0"+d.getHours()).slice(-2)+":"+("0"+d.getMinutes()).slice(-2)+"　冷蔵庫にご挨拶");if(hist.length>5)hist.pop();
     var t=tt[0][1];tt.forEach(function(x){if(ct0>=x[0])t=x[1];});
     $("ln").textContent="本日の挨拶回数："+ct0+" 回／称号："+t;
     $("lh").innerHTML=hist.map(function(x){return "<li>"+x+"</li>";}).join("");
@@ -262,6 +322,44 @@ footer{background:var(--navy);color:#fff;padding:1.3rem 0;text-align:center;font
       $("qs").textContent="回答担当：冷蔵庫／回答予定：気が向いたとき／お急ぎの場合は、冷蔵庫の裏の窓口へどうぞ。";}
     $("qr").classList.add("on");
   });
+  var posts=[["冷蔵庫会長","本日も稼働しています。"],["鍋蓋名人","直径24cmが最も安定します。"],["観葉植物副会長","（無言）"]];
+  function bbs(){var ul=$("bl");ul.innerHTML="";posts.forEach(function(p){var li=document.createElement("li"),t=document.createElement("time"),s=document.createElement("span");t.textContent=p[0];s.textContent=p[1];li.appendChild(t);li.appendChild(s);ul.appendChild(li);});}
+  $("bp").addEventListener("click",function(){var n=$("bn").value.trim()||"名無しの会員",m=$("bm").value.trim();if(!m)return;posts.unshift([n,m]);if(posts.length>12)posts.pop();$("bm").value="";bbs();});bbs();
+  function pick(a){return a[Math.floor(Math.random()*a.length)];}
+  var HA=["冷蔵庫","鍋のフタ","観葉植物","換気扇","カーテン","ざる","電子レンジ"],
+      HB=["毎晩こっそり","静かにうなることで","部屋の隅から見守ることで","ひそかに揺れることで","ぽつんと光ることで"],
+      HC=["世界のお茶の温度を一定に保とうとしている","人類に早起きをすすめている","唐揚げの在庫を調整している","部屋の空気を読もうとしている","ご挨拶を待っている"];
+  $("hb").addEventListener("click",function(){$("ho").textContent="「"+pick(HA)+"」は、"+pick(HB)+"、"+pick(HC)+"という説。協会評価："+"★★★★★".slice(0,1+Math.floor(Math.random()*5));});
+  var rk=[[0,"丸腰（ただし平和）"],[60,"見習い銀紙戦士"],[120,"ベテラン銀紙守護者"],[180,"伝説のホイルマスター"],[240,"ゴールデンおにぎり級"]];
+  $("hly").addEventListener("input",function(){$("hv").textContent=$("hly").value;});
+  $("hg2").addEventListener("click",function(){var s=Math.round(+$("hmat").value+ +$("hpos").value+(+$("hly").value)*12),r=rk[0];rk.forEach(function(x){if(s>=x[0])r=x;});$("hr2").textContent="帽子防御力 "+s+" 点。判定："+r[1]+"。（協会調べ）";});
+  $("pg").addEventListener("click",function(){var t=$("pt0").value.trim();
+    if(!t){$("pn").textContent="題目を入力してください";$("ps").textContent="";}
+    else{$("pn").textContent="「"+t+"」を受理しました（受理番号 PAP-"+h(t)+"）";$("ps").textContent="分野："+$("pf").value+"／査読結果：全員一致で採録（査読者：冷蔵庫、鍋のフタ）／掲載誌：協会紀要";}
+    $("pr2").classList.add("on");});
+  var FL=["大吉","中吉","吉","小吉","冷蔵庫吉"],FA=["冷蔵庫","鍋のフタ","換気扇","電子レンジ","観葉植物","カーテン","ざる"],
+      FM=["お茶を一杯飲むと整います。","今日は冷蔵庫に3回ご挨拶を。","鍋のフタを丁寧に扱うと吉。","カーテンの揺れを温かく見守って。","早めの就寝がラッキー。"];
+  $("fb").addEventListener("click",function(){var d=new Date(),s=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
+    $("fo2").textContent=d.getFullYear()+"/"+(d.getMonth()+1)+"/"+d.getDate()+" 運勢："+FL[s%5]+"／ラッキー家電："+FA[(s>>1)%7]+"／ラッキー数字："+(s%99+1)+" 気／"+FM[(s>>2)%5];});
+  var shareText="日本電磁波防止協会【絶対的本物公式】を見つけました。冷蔵庫が会長です。";
+  function setX(){var u=location.href;if(u.indexOf("http")!==0)u="";
+    var tx=shareText+" #日本電磁波防止協会 #絶対的本物公式",e=encodeURIComponent,eu=u?e(u):"",tu=tx+(u?" "+u:"");
+    $("xl").href="https://x.com/intent/post?text="+e(tx)+(u?"&url="+eu:"");
+    $("ll").href="https://line.me/R/share?text="+e(tu);
+    $("tl").href="https://www.threads.net/intent/post?text="+e(tu);
+    $("bl2").href="https://bsky.app/intent/compose?text="+e(tu);
+    $("fl").href=u?"https://www.facebook.com/sharer/sharer.php?u="+eu:"#";
+    $("hl").href=u?"https://b.hatena.ne.jp/entry/panel/?url="+eu:"#";
+    $("fl").style.display=$("hl").style.display=u?"":"none";
+    window.shareFull=tu;}
+  var pre={cm:"会員証を発行しました：",as:"認定申請の結果：",ho:"仮説工房：",hr2:"帽子診断：",pn:"論文を投稿しました：",ln:"活動記録：",jr:"本物判定：",fo2:"今日の運勢："};
+  Object.keys(pre).forEach(function(id){var el=$(id);if(!el||!window.MutationObserver)return;
+    new MutationObserver(function(){var t=el.textContent.trim();if(!t)return;shareText=(pre[id]+t).slice(0,110);setX();}).observe(el,{childList:true,characterData:true,subtree:true});});
+  setX();
+  $("nl").addEventListener("click",function(){var t=window.shareFull||shareText;if(navigator.share){navigator.share({text:t}).catch(function(){});}else{$("cp").click();}});
+  $("cp").addEventListener("click",function(){var t=window.shareFull||shareText,ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();
+    try{document.execCommand("copy");$("cp").textContent="コピー済";}catch(err){}
+    document.body.removeChild(ta);setTimeout(function(){$("cp").textContent="コピー";},1500);});
   var mag=null;
   $("rs").addEventListener("click",function(){
     if(!("Magnetometer" in window)){$("rn").textContent="この端末・ブラウザは磁気センサーに対応していません（AndroidのChromeで利用できます）。";return;}
@@ -277,7 +375,7 @@ footer{background:var(--navy);color:#fff;padding:1.3rem 0;text-align:center;font
         $("rs").disabled=false;$("rx").disabled=true;
       });
       mag.start();
-      $("rn").textContent="実測中です。端末を動かすと値が変わります。";$("rs").disabled=false;$("rx").disabled=true;
+      $("rn").textContent="実測中です。端末を動かすと値が変わります。";$("rs").disabled=true;$("rx").disabled=false;
     }catch(e){$("rn").textContent="センサーを起動できませんでした（このページでは利用が制限されている場合があります）。";}
   });
   $("rx").addEventListener("click",function(){
